@@ -28,6 +28,10 @@ var currentQuestion = 0
 //holds the correct answer incase answered wrong
 var x = ""
 
+//vars for the timer
+var timer = 20 
+var intervalId;
+
 //basic function to restart the game. Hides the game button after started, resets stats, and ques the first question.
 function start(){
     correctAns = 0
@@ -39,8 +43,7 @@ function start(){
 
 //when all questions have been asked, shows the start button to play again, displays stats.
 function gameOver(){
-    $("#answers").empty()
-    $("#question").empty()
+    clearScrn()
     $("#question").text("Game Over")
     $("#answers").append("<h4> Correct: " + correctAns + "</h4>")
     $("#answers").append("<h4> Wrong: " + wrongAns + "</h4>")
@@ -53,8 +56,10 @@ function nextQuestion() {
     $("#question").text(questions[currentQuestion].question)
     $("#answers").empty()
     
-    setTimeout(questionTimer, 1000 * 20)
-    
+    number = 20
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000)
+
     for (i = 0 ; i < 4 ; i++) {
         if (i === questions[currentQuestion].correctNum){
             $("#answers").append("<button class='guess' value='" + i + "'>" + questions[currentQuestion].answerChoices[i] + "")
@@ -68,47 +73,35 @@ function nextQuestion() {
 
 //if answer is correct starts 3 sec timout and displays correct
 function corectScrn(){
-    console.log("current: " + currentQuestion + "Length: " + questions.length)
-    setTimeout(transitionScrn, 1000 * 3)
 
-    $("#answers").empty()
-    $("#question").empty()
+    setTimeout(transitionScrn, 2000)
+    clearInterval(intervalId)
+    clearScrn()
     $("#question").append("<h1> CORRECT!! </h1>")
 }
 
 //if answer is wrong starts 3 sec timout and displays correct answer
 function wrongScrn(){
-    console.log("current: " + currentQuestion + "Length: " + questions.length)
-    setTimeout(transitionScrn, 1000 * 3)
-
-    $("#answers").empty()
-    $("#question").empty()
+    
+    setTimeout(transitionScrn, 2000)
+    clearInterval(intervalId)
+    clearScrn()
     $("#question").append("<h1> Wrong guess! </h1>")
     $("#answers").append("<h3> The Correct Answer Was: " + x + "</h3>")
     
 }
 
-//if question times out starts 3 sec timout and displays correct answer
-function questionTimer(){
-    console.log("current: " + currentQuestion + "Length: " + questions.length)
-    setTimeout(transitionScrn, 1000 * 3)
-
-    notAns++
-
-    $("#answers").empty()
-    $("#question").empty()
-    $("#question").append("<h1> Time's Up! </h1>")
-    $("#answers").append("<h3> The Correct Answer Was: " + x + "</h3>")
-}
 
 // used to check and see if theres anymore questions left after the correct/wrong transition
 function transitionScrn() {
     currentQuestion++
     if (currentQuestion === questions.length){
         gameOver()
+        
     }
     else{
         nextQuestion()
+        
     }
 }
 
@@ -131,3 +124,23 @@ $(document).on("click", ".guess" ,  function(){
     }
 })
 
+//used to clear the game screen.
+function clearScrn() {
+    $("#answers").empty()
+    $("#question").empty()
+}
+
+//function for the core timer
+function decrement() {
+    number--
+    $("#timer").show().text("Time: " + number)
+    console.log(number)
+    if (number === 0){
+        
+    notAns++
+
+    clearScrn()
+    $("#question").append("<h1> Time's Up! </h1>")
+    $("#answers").append("<h3> The Correct Answer Was: " + x + "</h3>")
+    }
+}
