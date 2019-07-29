@@ -5,17 +5,22 @@
     <link href="https://fonts.googleapis.com/css?family=Baumans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/435519eda4.js"></script>
 </head>
 <body>
-    <h1 class="text-center m-5"> D&D Trivia</h1>
-    
+    <div class="row justify-content-center">
+    <h1 id="title" class="text-center d-inline-flex p-2  m-5"><i class="fab fa-d-and-d"></i> D&D Trivia<i class="fab fa-d-and-d"></i></h1>
+    </div>
+
     <div class="container mt-5">
-        <div class="card text-center">
-            <div class="card-body">
+        <div class="card text-center border-0">
+            <div class="card-body ">
                 <h3 id="timer" class="card-text"></h3>
-                <p id="question" class="card-text p-2"></p>
+                <div id="dicePic"></div>
+                <h2 id="question" class="card-text p-2">Press Start To Begin Your journy Adventurer</h2>
                 <p id="answers" class="card-text"></p>
-                <button id="start" type="button" class="btn btn-success">Start</button>
+                <button id="start" type="button" class="btn btn-success p-3"><i class="fas fa-dice-d20"></i> Start <i class="fas fa-dice-d20"></i></button>
             </div>
         </div>
     </div>

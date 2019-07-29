@@ -1,0 +1,27 @@
+body{
+    background-image: url(../images/background.jpg);
+    background-size: 25%;
+    font-family: 'MedievalSharp', cursive;  
+}
+
+#title {
+    color: whitesmoke;
+  
+}
+
+.diceimg {
+    height:100px
+}
+
+.container, .card-body {
+    background-image: url(../images/gridbackground.jpg);
+    color:white;
+}
+
+#start {
+    font-size: 30px
+}
+
+.guess {
+
+}

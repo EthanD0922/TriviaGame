@@ -72,7 +72,9 @@ function start(){
     correctAns = 0
     wrongAns = 0 
     notAns = 0 
+    currentQuestion = 0
     $("#start").hide()
+    clearScrn()
     nextQuestion()
 }
 
@@ -88,8 +90,8 @@ function gameOver(){
 
 //used to set the questions into play
 function nextQuestion() {
+    clearScrn()
     $("#question").text(questions[currentQuestion].question)
-    $("#answers").empty()
     
     number = 20
     $("#timer").text("Time: " + number)
@@ -98,11 +100,11 @@ function nextQuestion() {
 
     for (i = 0 ; i < 4 ; i++) {
         if (i === questions[currentQuestion].correctNum){
-            $("#answers").append("<button class='guess' value='" + i + "'>" + questions[currentQuestion].answerChoices[i] + "")
+            $("#answers").append("<button class='guess btn-lg btn-block' value='" + i + "'><i class='fab fa-d-and-d'> " + questions[currentQuestion].answerChoices[i] + " <i class='fab fa-d-and-d'>")
             x = questions[currentQuestion].answerChoices[i]
         }
         else {
-            $("#answers").append("<button class='guess' value='" + i + "'>" + questions[currentQuestion].answerChoices[i] + "</button>")
+            $("#answers").append("<button class='guess btn-lg btn-block' value='" + i + "'><i class='fab fa-d-and-d'> " + questions[currentQuestion].answerChoices[i] + " <i class='fab fa-d-and-d'></button>")
         }
     }
 }
@@ -114,6 +116,7 @@ function corectScrn(){
     clearInterval(intervalId)
     clearScrn()
     $("#question").append("<h1> CORRECT!! </h1>")
+    $("#dicePic").append("<img class='diceimg' src='assets/images/nat20.png'>")
 }
 
 //if answer is wrong starts 3 sec timout and displays correct answer
@@ -124,7 +127,7 @@ function wrongScrn(){
     clearScrn()
     $("#question").append("<h1> Wrong guess! </h1>")
     $("#answers").append("<h3> The Correct Answer Was: " + x + "</h3>")
-    
+    $("#dicePic").append("<img class='diceimg' src='assets/images/nat1.png'>")
 }
 
 
@@ -165,13 +168,13 @@ function clearScrn() {
     $("#answers").empty()
     $("#question").empty()
     $("#timer").empty()
+    $("#dicePic").empty()
 }
 
 //function for the core timer
 function decrement() {
     number--
     $("#timer").text("Time: " + number)
-    console.log(number)
     if (number === 0){
     
         clearInterval(intervalId)
