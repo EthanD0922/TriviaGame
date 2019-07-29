@@ -2,53 +2,63 @@ var questions = [
     {
         question: "Dungeons and Dragons was first published in?", //string that holds the question
         correctNum: 1,  //used to set the answer in the nextQuestion() 
-        answerChoices: ["1981", "1974" ,"1989", "1965"] // all the options the correct answer is in the spot equal to the number above 
+        answerChoices: ["1981", "1974" ,"1989", "1965"], // all the options the correct answer is in the spot equal to the number above 
+        questionPic: "assets/images/question1.jpg"
 
     },
     {
         question: "Who created D&D",
         correctNum: 0,
-        answerChoices: ["Gary Gygax", "Bill Gates", "J. R. R. Tolkin" ,"Guru Darji"]
+        answerChoices: ["Gary Gygax", "Bill Gates", "J. R. R. Tolkin" ,"Guru Darji"],
+        questionPic: "assets/images/question2.gif"
     },
     {
         question: "Which class was not one of the three orignal",
         correctNum: 2,
-        answerChoices: ["Magic-User", "Fighting-Man", "Druid" ,"Cleric"]
+        answerChoices: ["Magic-User", "Fighting-Man", "Druid" ,"Cleric"],
+        questionPic: "assets/images/question3.jpg"
     },
     {
         question: "Which was not an original race",
         correctNum: 0,
-        answerChoices: ["Tiefling", "Human" , "Dwarf" , "Halfling"]
+        answerChoices: ["Tiefling", "Human" , "Dwarf" , "Halfling"],
+        questionPic: "assets/images/question4.jpg"
     },
     {
         question: "Which is the most current edition of D&D",
         correctNum: 3,
-        answerChoices: ["3rd", "3.5/Pathfinder", "6th" ,"5th"]
+        answerChoices: ["3rd", "3.5/Pathfinder", "6th" ,"5th"],
+        questionPic: "assets/images/question5.jpg"
     },
     {
         question: "What company has the rights and coninues to publish the books",
         correctNum: 2,
-        answerChoices: ["Sorcerers of the Sea", "Mages of the Mountains", "Wizards of the Coast" ,"Amazon"]
+        answerChoices: ["Sorcerers of the Sea", "Mages of the Mountains", "Wizards of the Coast" ,"Amazon"],
+        questionPic: "assets/images/question6.png"
     },
     {
         question: "Which is not an ability in D&D 5e",
         correctNum: 1,
-        answerChoices: ["Strength", "Power", "Dexterity" ,"Charisma"]
+        answerChoices: ["Strength", "Power", "Dexterity" ,"Charisma"],
+        questionPic: "assets/images/question7.jpg"
     },
     {
         question: "Who, according to D&D lore, is the lord of Nine Hells",
         correctNum: 0,
-        answerChoices: ["Azmodeus", "Baalzebul", "Tarrasque" ,"Tiamat"]
+        answerChoices: ["Azmodeus", "Baalzebul", "Tarrasque" ,"Tiamat"],
+        questionPic: "assets/images/question8.png"
     },
     {
         question: "Which is not a skill in 5e",
         correctNum: 3,
-        answerChoices: ["Insight", "Arcana", "Nature" ,"Smithing"]
+        answerChoices: ["Insight", "Arcana", "Nature" ,"Smithing"],
+        questionPic: "assets/images/question9.gif"
     },
     {
         question: "How much gold is a platinum piece worth",
         correctNum: 2,
-        answerChoices: ["100", "500", "10" ,"5"]
+        answerChoices: ["100", "500", "10" ,"5"],
+        questionPic: "assets/images/question10.gif"
     },
 
 ]
@@ -117,6 +127,7 @@ function corectScrn(){
     clearScrn()
     $("#question").append("<h1> CORRECT!! </h1>")
     $("#dicePic").append("<img class='diceimg' src='assets/images/nat20.png'>")
+    $("#image").append("<img class='questionImg' src='" + questions[currentQuestion].questionPic + "'>")
 }
 
 //if answer is wrong starts 3 sec timout and displays correct answer
@@ -128,6 +139,7 @@ function wrongScrn(){
     $("#question").append("<h1> Wrong guess! </h1>")
     $("#answers").append("<h3> The Correct Answer Was: " + x + "</h3>")
     $("#dicePic").append("<img class='diceimg' src='assets/images/nat1.png'>")
+    $("#image").append("<img class='questionImg' src='" + questions[currentQuestion].questionPic + "'>")
 }
 
 
@@ -169,6 +181,7 @@ function clearScrn() {
     $("#question").empty()
     $("#timer").empty()
     $("#dicePic").empty()
+    $("#image").empty()
 }
 
 //function for the core timer
